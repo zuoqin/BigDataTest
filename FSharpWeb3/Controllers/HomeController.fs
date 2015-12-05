@@ -20,3 +20,10 @@ type HomeController(repository : StoriesRepository) =
     member this.Edit (id) =
         repository.GetByID(id)
         |> this.View
+
+    [<HttpDelete>]
+    member this.Delete (id) : ActionResult =
+
+        
+
+            upcast base.RedirectToRoute("home")

@@ -10,7 +10,20 @@ open System.Web.Optimization
 
 type BundleConfig() =
     static member RegisterBundles (bundles:BundleCollection) =
+
+        //const string ANGULAR_APP_ROOT = "~/Client/scripts/app/"
+        //const string VIRTUAL_BUNDLE_PATH = ANGULAR_APP_ROOT + "main.js"
+
+
         bundles.Add(ScriptBundle("~/bundles/jquery").Include([|"~/Scripts/jquery-{version}.js"|]))
+        bundles.Add(ScriptBundle("~/bundles/angular")
+            .Include([|"~/Scripts/Angular/angular.js"; "~/Scripts/Angular/angular-resource.js"; "~/Scripts/Angular/angular-route.js"
+            ; "~/Scripts/Angular/angular-cookies.js"
+            |])
+
+            .IncludeDirectory("~/Scripts/app", "*.js", true)
+        )
+        
 
         // Use the development version of Modernizr to develop with and learn from. Then, when you're
         // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
