@@ -82,11 +82,18 @@ type Global() =
         //response.Write("Page viewed")
         //response.End()
         timeBegin <- System.DateTime.Now
+    
+    member x.ReplyBuild( y ) = 
+        match y with
+        | 500 -> ""
+        | _ -> "Time begin: " + timeBegin.ToString("HH.mm.ss.ffffff") +  " Time End: " + timeEnd.ToString("HH.mm.ss.ffffff") 
 
     member x.Application_EndRequest() =
         let context = base.Context
         let response = context.Response
         timeEnd <- System.DateTime.Now
-        response.Write("Time begin: " + timeBegin.ToString("hh.mm.ss.ffffff") +  " Time End: " + timeEnd.ToString("hh.mm.ss.ffffff"))
+        
+        response.Write(x.ReplyBuild(response.StatusCode))
+        //response.Write("Time begin: " + timeBegin.ToString("hh.mm.ss.ffffff") +  " Time End: " + timeEnd.ToString("hh.mm.ss.ffffff"))
         response.End()
         

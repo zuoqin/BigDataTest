@@ -1,24 +1,46 @@
 @model Library1.Models.Story
 
 
-<div class="container">
-    <div class="row main-wrapper">
-        <div class="col-md-12">
-            <div class="row home-list-item">
-                <div class="panel panel-danger">
-                    <div class="panel-heading">
-                        <a class="panel-title">@Model.title</a>
-                    </div>
-                    <div class="panel-body">
-                        <p>@Model.body</p>
-                        <p>
+<div class="container" >
 
-                        </p>
-                            
-                    </div>
+    <div class="row main-wrapper" >
+        <div class="col-sm-12">
+            @using (Html.BeginForm("Create", "Story", FormMethod.Post))
+            {
+
+
+
+                <div data-role="fieldcontain">
+
+                    
+
+                        
+                        @Html.Label(string.Format("{0}", (@Model.id)))
+                        @Html.TextArea("ID", string.Format("{0}", (@Model.id)), new { @class = "form-control1" })
+                        @Html.Label(Model.title)
+                        @Html.TextArea("Title", @Model.title, new { @class = "form-control" })
+                        @Html.Label(Model.body)
+                        @Html.TextArea("Body", @Model.body, new { @class = "form-control" })
 
                 </div>
-            </div>
+
+
+
+
+
+
+
+
+
+
+
+                            <button type="reset" onclick="cancel()" value="Cancel" class="btn btn-link"/>
+                            <button type="submit" data-role="button" class="btn btn-default btn-primary"/>
+
+
+
+            }
         </div>
     </div>
+
 </div>
