@@ -96,17 +96,20 @@ type Global() =
         //response.End()
         timeBegin <- System.DateTime.Now
     
-    member x.ReplyBuild( y ) = 
+    member x.ReplyBuild( y : int, z : string) = 
         match y with
         | 500 -> ""
-        | _ -> "Time begin: " + timeBegin.ToString("HH.mm.ss.ffffff") +  " Time End: " + timeEnd.ToString("HH.mm.ss.ffffff") 
+        | _ ->
+            match z with
+            | "application/json; charset=utf-8" -> ""
+            | _ -> "Time begin: " + timeBegin.ToString("HH.mm.ss.ffffff") +  " Time End: " + timeEnd.ToString("HH.mm.ss.ffffff") 
 
     member x.Application_EndRequest() =
         let context = base.Context
         let response = context.Response
         timeEnd <- System.DateTime.Now
         
-        response.Write(x.ReplyBuild(response.StatusCode))
+        response.Write(x.ReplyBuild(response.StatusCode, response.ContentType))
         //response.Write("Time begin: " + timeBegin.ToString("hh.mm.ss.ffffff") +  " Time End: " + timeEnd.ToString("hh.mm.ss.ffffff"))
         response.End()
         

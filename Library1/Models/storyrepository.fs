@@ -42,6 +42,17 @@ type StoriesRepository() =
                 select g }
         |> Seq.toList
     
+    member x.GetPage (pagenumber : int)  =
+        use context = new FsMvcAppEntities()
+        let skipcount = (pagenumber - 1) * 10
+
+        query { for g in context.stories do
+                sortByDescending g.id
+                skip skipcount
+                take 10 }
+        |> Seq.toList
+
+        
 
     member x.GetTop rowcount  =
         use context = new FsMvcAppEntities()

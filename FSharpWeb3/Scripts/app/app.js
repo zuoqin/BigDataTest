@@ -10,7 +10,7 @@ angular.module('BigData', ['ngResource', 'ngCookies', 'ngRoute'])
 
         $routeProvider
         .when('/', {
-            templateUrl: '/views/pages/home.html',
+            templateUrl: '/views/home',
             controller: 'MainController',
             controllerAs: 'main'
         })
