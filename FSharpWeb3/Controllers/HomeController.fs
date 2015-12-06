@@ -14,8 +14,9 @@ type HomeController(repository : StoriesRepository) =
     inherit Controller()
     new() = new HomeController(StoriesRepository())
     member this.Index () =
-        repository.GetTop(6)
-        |> this.View
+        //.GetTop(6)
+        //|> this.View
+        this.View() :> ActionResult
 
     member this.Edit (id) =
         repository.GetByID(id)

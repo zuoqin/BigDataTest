@@ -1,16 +1,15 @@
 @model IEnumerable<Library1.Models.Story>
 
     <div  class="container" ng-controller='MainController'>
-        <div class="row main-wrapper">
+        <div class="row main-wrapper" data-ng-repeat="story in stories">
             <div class="col-md-12">
-                @foreach (var x in Model)
-            {
+
                     <div class="row home-list-item">
                         <div class="panel panel-danger">
                             <div class="panel-heading">
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <a class="panel-title">@x.title</a>
+                                        <a ng-href="/view/{{story.id}}" class="panel-title">{{story.title}}</a>
                                     </div>
                                     <div class="col-md-6">
                                         <button class="btn btn-link" data-ng-click="deleteStory($index)">Delete</button>
@@ -22,16 +21,16 @@
                                 </div>
                             </div>
                             <div class="panel-body">
-                                <p>@x.body</p>
+                                <p ng-bind-html="story.body">{{story.body}}</p>
                                 <p>
 
                                 </p>
-                                <a href="~/Story/edit/@x.id" class="btn btn-default">Edit</a>
+                                <a href="~/Story/edit/{{story.id}}" class="btn btn-default">Edit</a>
                             </div>
 
                         </div>
                     </div>
-                }
+
             </div>
         </div>
     </div>

@@ -161,6 +161,7 @@
     </Compile>
     <Content Include="packages.config" />
     <Content Include="readme.txt" />
+    <Content Include="favicon.ico" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Antlr3.Runtime">

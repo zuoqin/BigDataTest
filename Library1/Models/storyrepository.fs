@@ -9,8 +9,11 @@ open System
 
 type FsMvcAppEntities() =
     inherit DbContext("FsMvcAppExample")
-    do Database.SetInitializer(new CreateDatabaseIfNotExists<FsMvcAppEntities>())
-    
+    do
+        Database.SetInitializer(new CreateDatabaseIfNotExists<FsMvcAppEntities>())
+        base.Database.Log <- fun x ->
+            System.Diagnostics.Debug.WriteLine x
+
     [<DefaultValue()>] val mutable stories : IDbSet<Story>
     member x.Strories with get() = x.stories and set v = x.stories <- v
 
